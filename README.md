@@ -44,9 +44,15 @@ Para poder pintar el escenario de forma sencilla, debemos preparar las diferente
 
 Ahora sí podemos comenzar a pintar nuestro escenario respetando siempre el Tilemap en donde se quiere pintar, de lo contrario nuestros objetos pueden mostrarse de forma incorrecta.
 
-Si tenemos dos objetos en la misma Sorting Layer y con el mismo Order in Layer, se mostrará por encima el que esté arriba en la jerarquía. Para arreglar esto, vamos al menú Edit -> Project Settings -> Graphics, en el apartado de Camera Settings tenemos el apartado `Transparency Sort Mode`, aquí seteamos como Custom Axis, esto significa que los sprites se ordenarán según uno de los ejes que le indiquemos.
+Si tenemos dos objetos en la misma Sorting Layer y con el mismo Order in Layer, se mostrará por encima de acuerdo al sort order y al pivote. Para arreglar esto, vamos al menú Edit -> Project Settings -> Graphics, en el apartado de Camera Settings tenemos el apartado `Transparency Sort Mode`, aquí seteamos como Custom Axis, esto significa que los sprites se ordenarán según uno de los ejes que le indiquemos, en este caso vamos a indicar que queremos ordenar de acuerdo al eje Y. La razón es muy sencilla, si el personaje se mueve hacia arriba en el eje Y lo que queremos es que parezca que se mueve detras del objeto, de manera que el sprite del objeto en cuestión, se posicionara delante. Esto va a crear la ilusión de que nos movemos delante y detrás de los objetos dentro de una misma sorting layer.
 
 
 
+![Touch_RPG - SampleScene - iOS - Unity 2020 3 2f1_ _DX11_ 2022-06-10 14-01-16](https://user-images.githubusercontent.com/81669610/173134302-4e737f0f-0d8d-4032-aae5-804911a0a3d6.gif)
+
+
+Para que lo anterior funcione correctamente, debemos asegurarnos de que:
+1. Los sprites de los game objects que van a interactuar tengan configurado el pivote a partir de donde queremos que se ordene, es decir hasta abajo de la imagen en este caso. Para hacer esto, seleccionamos el sprite y en el inspector buscamos el apartado `Pivot` y lo podemos configurar como bottom o custom. Una forma difetente de hacerlo es entrar al sprite editor y configurarlo manualmente desde ahí.
+2. Si el sprite es parte de una Tile Palette, es decir, se va a renderizar en un Tilemap, es importante configurar el eje del anchor en el apartado `Tile Anchor` del componente Tilemap en Y a para que no "suba" el sprite en el tilemap.
 
 
